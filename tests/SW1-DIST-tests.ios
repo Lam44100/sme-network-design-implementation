@@ -1,0 +1,25 @@
+enable
+terminal length 0
+
+show clock
+show ip interface brief
+show vlan brief
+show interfaces trunk
+show etherchannel summary
+show spanning-tree
+show spanning-tree vlan 10
+show spanning-tree vlan 20
+show spanning-tree vlan 30
+show spanning-tree vlan 99
+show interfaces status
+show port-security
+show port-security interface fastEthernet0/2
+show port-security interface fastEthernet0/3
+show running-config | section interface GigabitEthernet0/1
+show running-config | section interface Port-channel1
+show running-config | section interface FastEthernet0/2
+show running-config | section interface FastEthernet0/3
+show running-config | include hostname|enable secret|username|ip domain-name|ip ssh|transport input|spanning-tree
+
+ping 192.168.99.1
+ping 192.168.99.12

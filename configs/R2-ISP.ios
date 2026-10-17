@@ -1,0 +1,42 @@
+enable
+clock set 12:00:00 2 July 2026
+configure terminal
+hostname R2-ISP
+no ip domain-lookup
+clock timezone MYT 8 0
+ip domain-name net2201.local
+enable secret class
+username admin privilege 15 secret admin
+service password-encryption
+banner motd #Authorized access only.#
+
+line console 0
+ password cisco
+ login
+ logging synchronous
+ exit
+line vty 0 4
+ transport input ssh
+ login local
+ exit
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+
+interface gigabitEthernet0/0
+ description WAN_TO_R1_INTERNAL_G0/1
+ ip address 203.0.113.2 255.255.255.252
+ no shutdown
+ exit
+interface gigabitEthernet0/1
+ description EXTERNAL_TEST_NETWORK
+ ip address 198.51.100.1 255.255.255.0
+ no shutdown
+ exit
+
+ip route 192.168.10.0 255.255.255.0 203.0.113.1
+ip route 192.168.20.0 255.255.255.0 203.0.113.1
+ip route 192.168.30.0 255.255.255.0 203.0.113.1
+ip route 192.168.99.0 255.255.255.0 203.0.113.1
+
+end
+copy running-config startup-config

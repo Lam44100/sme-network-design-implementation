@@ -1,0 +1,20 @@
+enable
+terminal length 0
+
+show clock
+show ip interface brief
+show running-config | section interface GigabitEthernet0/0
+show running-config | section ip dhcp
+show ip dhcp pool
+show ip dhcp binding
+show ip route
+
+ping 192.168.10.1
+ping 192.168.20.1
+ping 192.168.30.1
+ping 192.168.99.1
+ping 203.0.113.2
+ping 198.51.100.10
+traceroute 198.51.100.10
+
+show running-config | include hostname|enable secret|username|ip domain-name|ip ssh|transport input

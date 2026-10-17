@@ -1,0 +1,41 @@
+{
+  "recorded_on": "2026-10-16",
+  "purpose": "File preservation only; not functional network verification.",
+  "files": [
+    {
+      "path": "lab/enterprise-network.pkt",
+      "original_path": "diagrams/ComputerNetworkAssignment.pkt",
+      "bytes": 81435,
+      "sha256": "da7efb2ed180ca019d11922923b99809ffe9d6539e51f7bef1fa1fc352e98b5d",
+      "matches_original_backup": true
+    },
+    {
+      "path": "configs/R1-INTERNAL.ios",
+      "original_path": "configs/R1-INTERNAL.ios",
+      "bytes": 2110,
+      "sha256": "8d7ebec3039940493d9881cf5fdb0af2779b3f2f1a0b3a4195ee4352f35d0488",
+      "matches_original_backup": true
+    },
+    {
+      "path": "configs/R2-ISP.ios",
+      "original_path": "configs/R2-ISP.ios",
+      "bytes": 939,
+      "sha256": "5e92b813b40524fbfce0060775f943876cbbfb55f95a2cc39560126d260729b3",
+      "matches_original_backup": true
+    },
+    {
+      "path": "configs/SW1-DIST.ios",
+      "original_path": "configs/SW1-DIST.ios",
+      "bytes": 2526,
+      "sha256": "229e26e29a4c971219262f04f68fd8d4b18c554797d992334b6617e03f2193b4",
+      "matches_original_backup": true
+    },
+    {
+      "path": "configs/SW2-ACCESS.ios",
+      "original_path": "configs/SW2-ACCESS.ios",
+      "bytes": 2278,
+      "sha256": "b728f0591a87aff52040f978075a464b2626d9e48bdd125f1bb4964ceb282135",
+      "matches_original_backup": true
+    }
+  ]
+}

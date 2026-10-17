@@ -1,0 +1,116 @@
+enable
+clock set 12:00:00 2 July 2026
+configure terminal
+hostname SW1-DIST
+no ip domain-lookup
+clock timezone MYT 8 0
+ip domain-name net2201.local
+enable secret class
+username admin privilege 15 secret admin
+service password-encryption
+banner motd #Authorized access only.#
+
+line console 0
+ password cisco
+ login
+ logging synchronous
+ exit
+line vty 0 4
+ transport input ssh
+ login local
+ exit
+crypto key generate rsa general-keys modulus 1024
+ip ssh version 2
+
+vlan 10
+ name STAFF_ADMIN
+ exit
+vlan 20
+ name STUDENT_USER
+ exit
+vlan 30
+ name GUEST_PUBLIC
+ exit
+vlan 99
+ name MANAGEMENT
+ exit
+vlan 999
+ name UNUSED_NATIVE
+ exit
+
+spanning-tree mode pvst
+spanning-tree vlan 10,20,30,99 root primary
+
+interface vlan 99
+ description MANAGEMENT_SVI
+ ip address 192.168.99.11 255.255.255.0
+ no shutdown
+ exit
+ip default-gateway 192.168.99.1
+
+interface gigabitEthernet0/1
+ description TRUNK_TO_R1_G0/0
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,99,999
+ switchport nonegotiate
+ no shutdown
+ exit
+
+interface range fastEthernet0/23 - 24
+ description ETHERCHANNEL_TO_SW2
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,99,999
+ switchport nonegotiate
+ no spanning-tree portfast
+ no spanning-tree bpduguard enable
+ channel-group 1 mode active
+ no shutdown
+ exit
+interface port-channel1
+ description ETHERCHANNEL_TRUNK_TO_SW2
+ switchport mode trunk
+ switchport trunk native vlan 999
+ switchport trunk allowed vlan 10,20,30,99,999
+ switchport nonegotiate
+ no shutdown
+ exit
+
+interface fastEthernet0/2
+ description PC_STAFF_VLAN10
+ switchport mode access
+ switchport access vlan 10
+ switchport nonegotiate
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security violation restrict
+ switchport port-security mac-address sticky
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+ exit
+interface fastEthernet0/3
+ description PC_STUDENT_VLAN20
+ switchport mode access
+ switchport access vlan 20
+ switchport nonegotiate
+ switchport port-security
+ switchport port-security maximum 1
+ switchport port-security violation restrict
+ switchport port-security mac-address sticky
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+ no shutdown
+ exit
+
+interface range fastEthernet0/1, fastEthernet0/4 - 22, gigabitEthernet0/2
+ description UNUSED_PORTS_SHUTDOWN_VLAN999
+ switchport mode access
+ switchport access vlan 999
+ switchport nonegotiate
+ shutdown
+ exit
+
+end
+copy running-config startup-config

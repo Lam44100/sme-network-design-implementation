@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "node --test website/network.test.cjs && python3 website/build.py",
+  "outputDirectory": "website/dist"
+}

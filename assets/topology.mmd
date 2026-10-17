@@ -1,0 +1,28 @@
+flowchart LR
+    subgraph Users["Internal VLAN End Devices"]
+        PC1["PC-STAFF<br/>VLAN 10<br/>DHCP"]
+        PC2["PC-STUDENT<br/>VLAN 20<br/>DHCP"]
+        PC3["PC-GUEST<br/>VLAN 30<br/>DHCP"]
+        PC4["PC-MGMT<br/>VLAN 99<br/>DHCP"]
+    end
+
+    subgraph Switching["Switching Layer"]
+        SW1["SW1-DIST<br/>2960 Switch"]
+        SW2["SW2-ACCESS<br/>2960 Switch"]
+    end
+
+    subgraph Routing["Routing / External Network"]
+        R1["R1-INTERNAL<br/>Router-on-a-stick<br/>DHCP Server"]
+        R2["R2-ISP<br/>External Router"]
+        EXT["EXT-SERVER<br/>198.51.100.10"]
+    end
+
+    PC1 ---|"Access VLAN 10"| SW1
+    PC2 ---|"Access VLAN 20"| SW1
+    PC3 ---|"Access VLAN 30"| SW2
+    PC4 ---|"Access VLAN 99"| SW2
+
+    SW1 ==>|"Po1 EtherChannel Trunk<br/>F0/23-F0/24<br/>Allowed: 10,20,30,99,999<br/>Native: 999"| SW2
+    SW1 ==>|"G0/1 Trunk<br/>802.1Q"| R1
+    R1 ---|"WAN 203.0.113.0/30"| R2
+    R2 ---|"External LAN 198.51.100.0/24"| EXT

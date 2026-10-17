@@ -1,0 +1,25 @@
+# Local working copies and publication artifacts
+/local/
+/backups/
+/dist/
+/website/dist/
+*.bak
+*.tmp
+~$*
+
+# Operating system and Python caches
+.DS_Store
+Thumbs.db
+Desktop.ini
+__pycache__/
+*.py[cod]
+
+# Local credentials and tooling settings
+.env
+.env.*
+!.env.example
+.venv/
+.vercel/
+node_modules/
+
+# The distributed lab/*.pkt and evidence images must stay tracked.
