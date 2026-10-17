@@ -2,6 +2,8 @@
 
 A Cisco Packet Tracer project exploring how a small organization can move from a flat network to separate staff, student, guest, and management VLANs—with centralized DHCP, inter-VLAN routing, and redundant switch links.
 
+**[View the live interactive webpage](https://sme-network-design-implementation.vercel.app)**
+
 **[Open the lab](lab/enterprise-network.pkt)** · **[Take the guided tour](docs/demo-walkthrough.md)** · **[Read the case study](docs/case-study.md)** · **[Inspect the evidence](evidence/README.md)**
 
 ![Network cabling and addressing diagram: four internal PCs, two switches joined by LACP, an internal router, an ISP router, and an external server.](assets/topology.png)

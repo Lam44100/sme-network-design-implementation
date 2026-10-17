@@ -2,6 +2,8 @@
 
 A dependency-free HTML/CSS/JavaScript MVP for presenting the existing Packet Tracer project. It includes device details, forward/reply paths, a conceptual EtherChannel outage control, addressing, design notes, original evidence, instructions, attribution, and real downloads.
 
+**Live site:** [sme-network-design-implementation.vercel.app](https://sme-network-design-implementation.vercel.app)
+
 ## Open locally
 
 Run `python website/build.py` from the repository root, then open `website/dist/index.html` directly in a browser. If you received the standalone webpage ZIP, extract it and open its `index.html`; no build is needed. All content and scripts are local; no CDN, API, account, or installation is required to view the built page. Clipboard access may require a local HTTP server; the Copy button selects the commands for manual copying when clipboard access is unavailable.
