@@ -1,0 +1,19 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/downloads/network-project.zip",
+      "destination": "https://github.com/Lam44100/sme-network-design-implementation/archive/refs/heads/main.zip",
+      "permanent": false
+    },
+    {
+      "source": "/downloads/:path*",
+      "destination": "https://raw.githubusercontent.com/Lam44100/sme-network-design-implementation/main/:path*",
+      "permanent": false
+    }
+  ]
+}

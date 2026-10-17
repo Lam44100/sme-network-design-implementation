@@ -18,6 +18,8 @@ Run `node --test website/network.test.cjs` to check model behavior. These checks
 
 ## Host on Vercel
 
+The initial Vercel release uploads only the four webpage files, images under `assets/`, and this folder's `vercel.json` as the deployment-root configuration. Its download routes redirect to the public GitHub repository; lab files and configurations are not copied to Vercel. This direct deployment does not enable automatic deployment on GitHub pushes.
+
 Import the GitHub repository into Vercel with the repository root as the Root Directory. The root `vercel.json` runs the existing model tests, builds with `python3 website/build.py`, and publishes only `website/dist`. No environment variables or package installation are required. When the GitHub integration is connected, pushes to the production branch trigger a new deployment.
 
 Alternatively, deploy from the repository root with `npx vercel --prod` after signing in to Vercel.
